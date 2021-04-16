@@ -1,7 +1,6 @@
-import { FooterContainer } from "./styles";
+import { FooterContainer } from './styles';
 
-import { SiLinkedin, SiInstagram, SiGmail } from "react-icons/Si";
-
+import { SiLinkedin, SiInstagram, SiGmail } from 'react-icons/Si';
 export function Footer() {
   return (
     <FooterContainer>
@@ -9,17 +8,17 @@ export function Footer() {
         <ul>
           <li>
             <a href="">
-              <SiLinkedin size={20} />
+              <SiLinkedin size={20} color={'white'} />
             </a>
           </li>
           <li>
             <a href="">
-              <SiInstagram size={20} />
+              <SiInstagram size={20} color={'white'} />
             </a>
           </li>
           <li>
             <a href="">
-              <SiGmail size={20} />
+              <SiGmail size={20} color={'white'} />
             </a>
           </li>
         </ul>

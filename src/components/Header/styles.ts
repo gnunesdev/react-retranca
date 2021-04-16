@@ -15,6 +15,10 @@ export const HeaderContainer = styled.div`
     display: flex;
     align-items: center;
     margin: 0 auto;
+
+    @media screen and (max-width: 1180px) {
+      padding: 0 8rem;
+    }
   }
 
   .header {

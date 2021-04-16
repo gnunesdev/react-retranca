@@ -1,5 +1,6 @@
 import { HeaderContainer } from './styles';
 import Switch from 'react-switch';
+import Link from 'next/link';
 
 interface HeaderProps {
   toggleTheme: () => void;
@@ -14,10 +15,10 @@ export function Header({ toggleTheme, isChecked }: HeaderProps) {
         <nav>
           <ul>
             <li>
-              <a href="/">Home</a>
+              <Link href="/">Home</Link>
             </li>
             <li>
-              <a href="/posts">Posts</a>
+              <Link href="/posts">Posts</Link>
             </li>
           </ul>
         </nav>

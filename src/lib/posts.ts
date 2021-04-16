@@ -16,3 +16,14 @@ export async function getPosts() {
       console.error(err);
     });
 }
+
+export async function getSinglePost(postSlug: string) {
+  return await api.posts
+    .read({
+      slug: postSlug,
+      include: 'tags,authors',
+    })
+    .catch((err: Error) => {
+      console.error(err);
+    });
+}

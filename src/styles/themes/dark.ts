@@ -9,5 +9,6 @@ export default {
     secondary: '#3c6e71',
 
     gray: '#757575',
+    gray200: '#bfbfbf',
   },
 };

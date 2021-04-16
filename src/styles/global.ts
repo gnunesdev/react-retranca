@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from 'styled-components';
 
 export default createGlobalStyle`
   * {
@@ -27,7 +27,7 @@ export default createGlobalStyle`
     cursor: pointer;
   }
 
-  a {
+  a, em {
     color: inherit;
     text-decoration: none;
   }

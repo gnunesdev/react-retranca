@@ -6,3 +6,4 @@ https://www.behance.net/gallery/110238165/Portfolio-Landing-Page?tracking_source
 https://ghost.org/docs/install/local/
 https://ghost.org/docs/jamstack/next/
 https://retranca.ghost.io/ghost/#/posts
+https://ghost.org/docs/content-api/javascript/
