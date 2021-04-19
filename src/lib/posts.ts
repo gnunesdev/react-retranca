@@ -27,3 +27,11 @@ export async function getSinglePost(postSlug: string) {
       console.error(err);
     });
 }
+
+export async function getPostsFiltered(filter: string, limit = 6) {
+  return await api.posts.browse({
+    limit: String(limit),
+    include: 'tags,authors',
+    filter: `tag:${filter}`,
+  });
+}

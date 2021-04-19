@@ -1,13 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
 
-import Cookie from "js-cookie";
+import Cookie from 'js-cookie';
 
 export default function usePersistedState(key: string, initialState: any) {
   const [state, setState] = useState(() => {
     const storageValue = Cookie.get(key);
 
     if (storageValue) {
-      console.log(storageValue);
       return JSON.parse(storageValue);
     } else {
       return initialState;

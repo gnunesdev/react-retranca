@@ -7,6 +7,7 @@ export const HeaderContainer = styled.div`
   position: fixed;
   top: 0;
   z-index: 1;
+  opacity: 0.98;
 
   header {
     height: 6rem;

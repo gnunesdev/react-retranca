@@ -11,7 +11,7 @@ export function Header({ toggleTheme, isChecked }: HeaderProps) {
   return (
     <HeaderContainer>
       <header>
-        <h1>retranca.</h1>
+        <h1>.retranca.</h1>
         <nav>
           <ul>
             <li>

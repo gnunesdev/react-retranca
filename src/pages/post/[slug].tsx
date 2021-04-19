@@ -11,7 +11,6 @@ interface Post {
 }
 
 export default function Post({ post }: PostPageProps) {
-  console.log(post);
   return (
     <PostContainer>
       <div className="post__header">
@@ -64,8 +63,6 @@ export async function getStaticPaths() {
   const paths = posts.map((post) => ({
     params: { slug: post.slug },
   }));
-
-  console.log('dadada', paths);
 
   // { fallback: false } means posts not found should 404.
   return { paths, fallback: false };
