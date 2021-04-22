@@ -2,6 +2,7 @@ export default {
   title: 'dark',
 
   colors: {
+    backgroundHarder: '#000',
     background: '#222222',
     text: '#f8f8f8',
 

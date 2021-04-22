@@ -2,17 +2,21 @@ import { HomeContainer } from './styles';
 import { MainPosts } from '../components/MainPosts';
 
 import { getPostsFiltered } from '../lib/posts';
+import { FormEmail } from '../components/FormEmail';
 
 interface HomeProps {
   posts: [any];
 }
 
-export default function Home({ posts }) {
+export default function Home({ posts }: HomeProps) {
   return (
     <HomeContainer>
-      <div className="home__section">
+      <div className="home__section has--container">
         <h2>.Postagens principais</h2>
         <MainPosts posts={posts}></MainPosts>
+      </div>
+      <div className="home__section has--container">
+        <FormEmail></FormEmail>
       </div>
     </HomeContainer>
   );

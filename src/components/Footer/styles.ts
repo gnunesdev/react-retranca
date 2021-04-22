@@ -14,7 +14,8 @@ export const FooterContainer = styled.footer`
   align-items: center;
   justify-content: center;
 
-  z-index: 1;
+  z-index: 10;
+
   nav {
     margin-top: 0.3rem;
     ul {

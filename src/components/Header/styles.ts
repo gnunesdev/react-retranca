@@ -6,7 +6,7 @@ export const HeaderContainer = styled.div`
   box-shadow: 0px 0px 8px -5px rgba(0, 0, 0, 0.8);
   position: fixed;
   top: 0;
-  z-index: 1;
+  z-index: 10;
   opacity: 0.98;
 
   header {

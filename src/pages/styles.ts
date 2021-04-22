@@ -1,14 +1,22 @@
 import styled from 'styled-components';
 
 export const HomeContainer = styled.section`
-  max-width: 1280px;
   margin: 10rem auto 10rem;
   display: grid;
 
   .home {
     &__section {
-      max-width: 80%;
       margin: 0 auto;
+      width: 100%;
+
+      &:not(:first-child) {
+        margin-top: 4rem;
+      }
+
+      &.has--container {
+        max-width: 1280px;
+        padding: 0 6rem;
+      }
 
       > h2 {
         font-size: 4.2rem;
