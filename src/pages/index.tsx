@@ -11,6 +11,12 @@ interface HomeProps {
 export default function Home({ posts }: HomeProps) {
   return (
     <HomeContainer>
+      <div className="home__intro">
+        <div className="home__intro-content">
+          <h1>.retranca.</h1>
+          <p>Essa é uma descrição bacana sobre o retranca, tuti você deve pensar em um texto bacana pois eu sou programador o escritor aqui é tu tmj</p>
+        </div>
+      </div>
       <div className="home__section has--container">
         <h2>.Postagens principais</h2>
         <MainPosts posts={posts}></MainPosts>

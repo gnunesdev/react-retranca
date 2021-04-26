@@ -1,6 +1,7 @@
 import { FooterContainer } from './styles';
 
-import { SiLinkedin, SiInstagram, SiGmail } from 'react-icons/Si';
+import { SiLinkedin, SiInstagram, SiGmail } from 'react-icons/si';
+
 export function Footer() {
   return (
     <FooterContainer>

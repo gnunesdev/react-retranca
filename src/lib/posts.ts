@@ -2,7 +2,7 @@ import GhostContentAPI from '@tryghost/content-api';
 
 const api = new GhostContentAPI({
   url: 'http://localhost:2368',
-  key: '0c4b542a15945a697e1bd412c0',
+  key: '447903bdce0e0718508a919df3',
   version: 'v3',
 });
 

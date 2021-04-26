@@ -27,7 +27,6 @@ export const PostContainer = styled.div<PostContainerProps>`
 
     h2 {
       font-size: 4rem;
-      color: ;
     }
 
     p {
