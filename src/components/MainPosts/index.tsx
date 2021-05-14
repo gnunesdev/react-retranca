@@ -14,7 +14,6 @@ interface Post {
 }
 
 export function MainPosts({ posts }: MainPostsProps) {
-  console.log(posts);
   return (
     <MainPostsContainer>
       {posts.map((post) => (

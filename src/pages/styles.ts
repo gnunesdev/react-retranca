@@ -37,6 +37,12 @@ export const HomeContainer = styled.section`
       }
     }
 
+    &__section-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 6rem;
+    }
+
     &__section {
       margin: 0 auto;
       width: 100%;
@@ -47,16 +53,20 @@ export const HomeContainer = styled.section`
 
       &.has--container {
         max-width: 1280px;
-        padding: 0 6rem;
       }
 
-      > h2 {
-        font-size: 4.2rem;
-        font-weight: bold;
-        margin-bottom: 2rem;
-        color: ${(props) => props.theme.colors.primary};
-        position: relative;
+      &.has--background {
+        padding: 7rem 0 7rem;
+        background: ${(props) => props.theme.colors.backgroundHarder}
       }
+    }
+
+    &__section-title {
+      font-size: 4.2rem;
+      font-weight: bold;
+      margin-bottom: 2rem;
+      color: ${(props) => props.theme.colors.primary};
+      position: relative;
     }
   }
 `;

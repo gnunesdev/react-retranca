@@ -28,10 +28,25 @@ export async function getSinglePost(postSlug: string) {
     });
 }
 
-export async function getPostsFiltered(filter: string, limit = 6) {
+export async function getPostsFilterdByTag(filter: string, limit = 6) {
   return await api.posts.browse({
     limit: String(limit),
     include: 'tags,authors',
     filter: `tag:${filter}`,
+  });
+}
+
+export async function getPostsLimited(limit = 6) {
+  return await api.posts.browse({
+    limit: String(limit),
+    include: 'tags,authors',
+  });
+}
+
+export async function getPostsTest(limit = 5) {
+  return await api.posts.browse({
+    limit: String(limit),
+    filter: `tag:-main`,
+    include: 'tags,authors',
   });
 }

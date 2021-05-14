@@ -1,5 +1,7 @@
-import { useState } from 'react';
+import React, { ButtonHTMLAttributes, useState } from 'react';
 import { FormEmailContainer } from './styles';
+
+import { api } from './../../services/api'
 
 export function FormEmail() {
   const [name, setName] = useState('');
@@ -11,6 +13,34 @@ export function FormEmail() {
     setFunction: any
   ) {
     setFunction(event.target.value);
+  }
+
+  async function handleSubmit(event: React.ChangeEvent) {
+    event.preventDefault();
+
+    let data = {
+      name,
+      email,
+      message
+    }
+
+    try {
+     await api.p
+      
+    } catch (error) {
+      
+    }
+
+
+    fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json, text/plain, */*',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
+  
   }
 
   return (

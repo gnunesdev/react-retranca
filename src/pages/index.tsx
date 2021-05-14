@@ -1,14 +1,19 @@
 import { HomeContainer } from './styles';
-import { MainPosts } from '../components/MainPosts';
 
-import { getPostsFiltered } from '../lib/posts';
+import { getPostsFilterdByTag, getPostsTest } from '../lib/posts';
+
 import { FormEmail } from '../components/FormEmail';
+import { MainPosts } from '../components/MainPosts';
+import { RecentPosts } from '../components/RecentPosts';
 
 interface HomeProps {
-  posts: [any];
+  mainPosts: [any];
+  recentPosts: [any];
 }
 
-export default function Home({ posts }: HomeProps) {
+export default function Home({ mainPosts, recentPosts }: HomeProps) {
+  console.log(recentPosts);
+
   return (
     <HomeContainer>
       <div className="home__intro">
@@ -18,8 +23,16 @@ export default function Home({ posts }: HomeProps) {
         </div>
       </div>
       <div className="home__section has--container">
-        <h2>.Postagens principais</h2>
-        <MainPosts posts={posts}></MainPosts>
+        <div className="home__section-container">
+          <h2 className="home__section-title">.Postagens principais</h2>
+          <MainPosts posts={mainPosts}></MainPosts>
+        </div>
+      </div>
+      <div className="home__section has--background">
+        <div className="home__section-container">
+          <h2 className="home__section-title">.Postagens mais recentes</h2>
+          <RecentPosts posts={recentPosts}></RecentPosts>
+        </div>
       </div>
       <div className="home__section has--container">
         <FormEmail></FormEmail>
@@ -29,15 +42,16 @@ export default function Home({ posts }: HomeProps) {
 }
 
 export const getStaticProps = async () => {
-  const posts = await getPostsFiltered('main', 3);
+  const mainPosts = await getPostsFilterdByTag('main', 3);
+  const recentPosts = await getPostsTest(5);
 
-  if (!posts) {
+  if (!mainPosts || ! recentPosts) {
     return {
       notFound: true,
     };
   }
 
   return {
-    props: { posts },
+    props: { mainPosts, recentPosts },
   };
 };
