@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const HeaderContainer = styled.div`
   background: ${(props) => props.theme.colors.primary};
@@ -50,7 +50,7 @@ export const HeaderContainer = styled.div`
         transition: color 0.2s;
 
         &:after {
-          content: '';
+          content: "";
           position: absolute;
           height: 4px;
           border-radius: 3px 3px 0 0;

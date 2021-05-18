@@ -1,17 +1,17 @@
-import usePersistedState from './../utils/userPersistedState';
+import usePersistedState from "./../utils/usePersistedState";
 
-import { ThemeProvider } from 'styled-components';
+import { ThemeProvider } from "styled-components";
 
-import { Header } from '../components/Header';
-import { Footer } from '../components/Footer';
+import { Header } from "../components/Header";
+import { Footer } from "../components/Footer";
 
-import GlobalStyle from './../styles/global';
+import GlobalStyle from "./../styles/global";
 
-import light from './../styles/themes/light';
-import dark from './../styles/themes/dark';
+import light from "./../styles/themes/light";
+import dark from "./../styles/themes/dark";
 
 function MyApp({ Component, pageProps }) {
-  const [theme, setTheme] = usePersistedState('theme', light);
+  const [theme, setTheme] = usePersistedState("theme", light);
 
   const toggleTheme = () => {
     theme.title === light.title ? setTheme(dark) : setTheme(light);

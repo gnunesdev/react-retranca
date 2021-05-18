@@ -1,7 +1,10 @@
-import { PaginationProvider } from '../../hooks/usePaginationContext';
-import { getPosts } from '../../lib/posts';
-import { Container } from './styles';
-import ListPosts from './ListPosts';
+import { PaginationProvider } from "../../context/usePaginationContext";
+import { getPosts } from "../../lib/posts";
+import { Container } from "./styles";
+import ListPosts from "./ListPosts";
+import { PaginationPosts } from "./PaginationSettings";
+import { PostsProvider } from "../../context/usePostsContext";
+import { useState } from "react";
 
 interface PostsProps {
   posts: Array<Post>;
@@ -17,12 +20,17 @@ interface Post {
 }
 
 export default function Posts({ posts }: PostsProps) {
+  const [currentPosts, setCurrentPosts] = useState(posts);
+
   return (
-    <PaginationProvider qtyItemsToShow={6} items={posts}>
+    // <PostsProvider postsFetched={posts} setCurrentPosts={setCurrentPosts}>
+    <PaginationProvider qtyItemsToShow={6} items={currentPosts}>
       <Container>
         <ListPosts></ListPosts>
+        <PaginationPosts></PaginationPosts>
       </Container>
     </PaginationProvider>
+    // </PostsProvider>
   );
 }
 

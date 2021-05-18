@@ -5,7 +5,7 @@ import {
   Dispatch,
   SetStateAction,
   useContext,
-} from 'react';
+} from "react";
 
 interface PaginationProviderProps {
   children: ReactNode;
@@ -18,6 +18,7 @@ interface PaginationContextData {
   setActivePage: Dispatch<SetStateAction<number>>;
   itemsToShow: Array<any>;
   handleNextPage: () => void;
+  handlePreviousPage: () => void;
   qtyPages: number;
 }
 
@@ -28,7 +29,7 @@ export const PaginationProvider = ({
   items,
   children,
 }: PaginationProviderProps) => {
-  const [activePage, setActivePage] = useState(0);
+  const [activePage, setActivePage] = useState(1);
   const [itemsToShow, setItemsToShow] = useState(
     items.slice(0, qtyItemsToShow)
   );
@@ -44,6 +45,17 @@ export const PaginationProvider = ({
         )
       );
     }
+    setActivePage(activePage + 1);
+  }
+
+  function handlePreviousPage() {
+    setItemsToShow(
+      items.slice(
+        qtyItemsToShow * (activePage - 2),
+        qtyItemsToShow * (activePage - 1)
+      )
+    );
+    setActivePage(activePage - 1);
   }
 
   return (
@@ -53,6 +65,7 @@ export const PaginationProvider = ({
         setActivePage,
         itemsToShow,
         handleNextPage,
+        handlePreviousPage,
         qtyPages,
       }}
     >

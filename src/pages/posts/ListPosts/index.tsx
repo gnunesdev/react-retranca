@@ -1,7 +1,7 @@
-import Link from 'next/link';
+import Link from "next/link";
 
-import { usePagination } from '../../../hooks/usePaginationContext';
-import { Container } from './styles';
+import { usePagination } from "../../../context/usePaginationContext";
+import { Container } from "./styles";
 
 interface Post {
   id: string;
@@ -20,7 +20,7 @@ export default function ListPosts() {
     <Container>
       <ul>
         {itemsToShow.map((post: Post) => (
-          <Link href={`/post/${post.slug}`}>
+          <Link href={`/post/${post.slug}`} key={post.id}>
             <li className="post__container" key={post.id}>
               <div className="post__head">
                 <img
@@ -29,10 +29,10 @@ export default function ListPosts() {
                 />
                 <div className="posts__head-description">
                   <time>
-                    {new Intl.DateTimeFormat('pt-BR', {
-                      day: 'numeric',
-                      month: 'long',
-                      year: 'numeric',
+                    {new Intl.DateTimeFormat("pt-BR", {
+                      day: "numeric",
+                      month: "long",
+                      year: "numeric",
                     }).format(new Date(post.published_at))}
                   </time>
                   <h2>{post.title}</h2>
