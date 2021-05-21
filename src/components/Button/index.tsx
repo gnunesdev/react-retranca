@@ -2,10 +2,12 @@ import { ButtonContainer } from "./styles";
 
 interface ButtonProps {
   onClick: () => void;
-  description: string;
+  description?: string;
   width: number;
   fontSize?: number;
   disabled?: true | false;
+  hasIcon?: true | false;
+  children?: React.ReactChild;
 }
 
 export function Button({
@@ -14,6 +16,8 @@ export function Button({
   width,
   fontSize,
   disabled,
+  hasIcon,
+  children,
 }: ButtonProps) {
   return (
     <ButtonContainer
@@ -22,7 +26,7 @@ export function Button({
       fontSize={fontSize}
       disabled={disabled}
     >
-      {description}
+      {hasIcon ? children : description}
     </ButtonContainer>
   );
 }

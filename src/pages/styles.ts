@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const HomeContainer = styled.section`
   margin: 6rem auto 10rem;
@@ -9,8 +9,26 @@ export const HomeContainer = styled.section`
       position: relative;
       width: 100%;
       height: calc(100vh - 10.4rem);
-      background-size: cover;
-      background-image: url('/images/background-blured.jpg');
+      overflow: hidden;
+
+      &:hover {
+        &:before {
+          transform: scale(1.02);
+        }
+      }
+
+      &:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-position: center;
+        background-size: cover;
+        background-image: url("/images/background-blured.jpg");
+        width: 100%;
+        height: 100%;
+        transition: transform 0.35s ease;
+      }
     }
 
     &__intro-content {
@@ -57,7 +75,7 @@ export const HomeContainer = styled.section`
 
       &.has--background {
         padding: 7rem 0 7rem;
-        background: ${(props) => props.theme.colors.backgroundHarder}
+        background: ${(props) => props.theme.colors.backgroundHarder};
       }
     }
 

@@ -1,10 +1,12 @@
-import { HomeContainer } from './styles';
+import { HomeContainer } from "./styles";
 
-import { getPostsFilterdByTag, getPostsTest } from '../lib/posts';
+import { getPostsFilterdByTag, getPostsTest } from "../lib/posts";
 
-import { FormEmail } from '../components/FormEmail';
-import { MainPosts } from '../components/MainPosts';
-import { RecentPosts } from '../components/RecentPosts';
+import { FormEmail } from "../components/FormEmail";
+import { MainPosts } from "../components/MainPosts";
+import { RecentPosts } from "../components/RecentPosts";
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
 
 interface HomeProps {
   mainPosts: [any];
@@ -12,14 +14,26 @@ interface HomeProps {
 }
 
 export default function Home({ mainPosts, recentPosts }: HomeProps) {
-  console.log(recentPosts);
+  const containerRef = useRef(null);
+  const titleRef = useRef(null);
+
+  useEffect(() => {
+    gsap.from(titleRef.current, {
+      y: 50,
+      opacity: 0,
+      duration: 1,
+    });
+  }, []);
 
   return (
-    <HomeContainer>
+    <HomeContainer ref={containerRef}>
       <div className="home__intro">
-        <div className="home__intro-content">
+        <div className="home__intro-content" ref={titleRef}>
           <h1>.retranca.</h1>
-          <p>Essa é uma descrição bacana sobre o retranca, tuti você deve pensar em um texto bacana pois eu sou programador o escritor aqui é tu tmj</p>
+          <p>
+            Essa é uma descrição bacana sobre o retranca, tuti você deve pensar
+            em um texto bacana pois eu sou programador o escritor aqui é tu tmj
+          </p>
         </div>
       </div>
       <div className="home__section has--container">
@@ -42,10 +56,10 @@ export default function Home({ mainPosts, recentPosts }: HomeProps) {
 }
 
 export const getStaticProps = async () => {
-  const mainPosts = await getPostsFilterdByTag('main', 3);
+  const mainPosts = await getPostsFilterdByTag("main", 3);
   const recentPosts = await getPostsTest(5);
 
-  if (!mainPosts || ! recentPosts) {
+  if (!mainPosts || !recentPosts) {
     return {
       notFound: true,
     };

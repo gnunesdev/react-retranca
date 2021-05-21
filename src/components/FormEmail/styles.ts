@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const FormEmailContainer = styled.section`
   width: 100%;
@@ -6,7 +6,7 @@ export const FormEmailContainer = styled.section`
   margin: 0 auto;
 
   h2 {
-    font-size: 4.2rem;
+    font-size: 3.8rem;
     font-weight: bold;
     color: #3c6e71;
     text-shadow: 0px 0px 8px -5px rgba(0, 0, 0, 0.8);
@@ -15,7 +15,7 @@ export const FormEmailContainer = styled.section`
   }
 
   form {
-    margin-top: 3rem;
+    margin-top: 4rem;
   }
 
   button {
@@ -51,28 +51,33 @@ export const FormEmailContainer = styled.section`
       }
 
       label {
-        font-size: 1.8rem;
-        font-family: 'Roboto';
-        font-weight: bold;
-        color: ${(props) => props.theme.colors.text};
+        font-size: 1.6rem;
+        font-family: "Roboto";
+        color: ${(props) => props.theme.colors.primary};
       }
 
       input,
       textarea {
         margin-top: 0.8rem;
         font-size: 1.6rem;
-        padding-bottom: 0.6rem;
-        padding-left: 0.1rem;
         color: ${(props) => props.theme.colors.gray};
         resize: none;
 
-        background: none;
-        border: 0;
-        border-bottom: 2px solid ${(props) => props.theme.colors.primary};
+        border: 1px solid ${(props) => props.theme.colors.gray100};
+        border-radius: 6px;
 
         &::placeholder {
           color: ${(props) => props.theme.colors.gray};
         }
+      }
+
+      input {
+        height: 3.8rem;
+        padding-left: 1rem;
+      }
+
+      textarea {
+        padding: 1rem;
       }
     }
   }

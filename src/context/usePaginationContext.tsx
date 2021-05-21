@@ -20,6 +20,7 @@ interface PaginationContextData {
   handleNextPage: () => void;
   handlePreviousPage: () => void;
   qtyPages: number;
+  handleUpdateCurrentItems: (item: Array<{}>) => void;
 }
 
 const PaginationContext = createContext({} as PaginationContextData);
@@ -29,17 +30,23 @@ export const PaginationProvider = ({
   items,
   children,
 }: PaginationProviderProps) => {
+  const [currentItems, setCurrentItems] = useState(items);
   const [activePage, setActivePage] = useState(1);
-  const [itemsToShow, setItemsToShow] = useState(
-    items.slice(0, qtyItemsToShow)
+  const [itemsToShow, setItemsToShow] = useState(() =>
+    currentItems.slice(0, qtyItemsToShow)
   );
 
-  const qtyPages = Math.ceil(items.length / qtyItemsToShow);
+  function handleUpdateCurrentItems(items: Array<{}>) {
+    setCurrentItems(items);
+    setItemsToShow(items.slice(0, qtyItemsToShow));
+  }
+
+  const qtyPages = Math.ceil(currentItems.length / qtyItemsToShow);
 
   function handleNextPage() {
-    if (itemsToShow.length < items.length) {
+    if (itemsToShow.length < currentItems.length) {
       setItemsToShow(
-        items.slice(
+        currentItems.slice(
           qtyItemsToShow * activePage,
           qtyItemsToShow * activePage + 1
         )
@@ -50,7 +57,7 @@ export const PaginationProvider = ({
 
   function handlePreviousPage() {
     setItemsToShow(
-      items.slice(
+      currentItems.slice(
         qtyItemsToShow * (activePage - 2),
         qtyItemsToShow * (activePage - 1)
       )
@@ -67,6 +74,7 @@ export const PaginationProvider = ({
         handleNextPage,
         handlePreviousPage,
         qtyPages,
+        handleUpdateCurrentItems,
       }}
     >
       {children}

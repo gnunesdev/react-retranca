@@ -1,12 +1,12 @@
-import React, { ButtonHTMLAttributes, useState } from 'react';
-import { FormEmailContainer } from './styles';
+import React, { useState } from "react";
+import { FormEmailContainer } from "./styles";
 
-import { api } from './../../services/api'
+import { api } from "./../../services/api";
 
 export function FormEmail() {
-  const [name, setName] = useState('');
-  const [subject, setSubject] = useState('');
-  const [emailText, setEmailText] = useState('');
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
 
   function handleChangeInput(
     event: React.ChangeEvent<HTMLInputElement>,
@@ -15,32 +15,15 @@ export function FormEmail() {
     setFunction(event.target.value);
   }
 
-  async function handleSubmit(event: React.ChangeEvent) {
+  async function handleSubmit(event: any) {
     event.preventDefault();
 
-    let data = {
-      name,
-      email,
-      message
-    }
+    const data = { name, email, message };
 
     try {
-     await api.p
-      
-    } catch (error) {
-      
-    }
-
-
-    fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json, text/plain, */*',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-      })
-  
+      const response = await api.post("/contact", { data });
+      console.log(response);
+    } catch (error) {}
   }
 
   return (
@@ -48,34 +31,31 @@ export function FormEmail() {
       <h2>.Entre em contato comigo!</h2>
       <form>
         <div className="form__input-container">
-          <label htmlFor="">Digite seu nome:</label>
+          <label htmlFor="">Qual o seu nome?</label>
           <input
             type="text"
             onChange={(e) => handleChangeInput(e, setName)}
-            placeholder="Nome"
             value={name}
           />
         </div>
         <div className="form__input-container">
-          <label htmlFor="">Selecione o assunto:</label>
+          <label htmlFor="">Qual o seu e-mail?</label>
           <input
             type="text"
-            onChange={(e) => handleChangeInput(e, setSubject)}
-            placeholder="Assunto"
-            value={subject}
+            onChange={(event) => handleChangeInput(event, setEmail)}
+            value={email}
           />
         </div>
         <div className="form__input-container">
-          <label htmlFor="">Digite o corpo do e-mail:</label>
+          <label htmlFor="">O que você gostaria de conversar?</label>
           <textarea
             rows={8}
             id=""
-            onChange={(e) => handleChangeInput(e, setEmailText)}
-            placeholder="Texto"
-            value={emailText}
+            onChange={(event) => handleChangeInput(event, setMessage)}
+            value={message}
           ></textarea>
         </div>
-        <button>Enviar e-mail</button>
+        <button onClick={(event) => handleSubmit(event)}>Enviar e-mail</button>
       </form>
     </FormEmailContainer>
   );

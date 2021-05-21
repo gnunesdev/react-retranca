@@ -1,5 +1,6 @@
 import { createContext, ReactNode, useContext } from "react";
 import { slugify } from "../utils/usefulFunctions";
+import { usePagination } from "./usePaginationContext";
 
 interface Post {
   id: string;
@@ -13,22 +14,26 @@ interface Post {
 interface PostsProviderProps {
   children: ReactNode;
   postsFetched: Array<Post>;
-  setCurrentPosts: (posts: Array<Post>) => void;
 }
 
-const PostsContext = createContext({});
+interface PostsContextData {
+  handleSearchByName: (name: string) => void;
+}
+
+const PostsContext = createContext({} as PostsContextData);
 
 export const PostsProvider = ({
   postsFetched,
-  setCurrentPosts,
   children,
 }: PostsProviderProps) => {
-  function handleSearchByName(name: string) {
-    const postsFiltered = postsFetched.filter((post: Post) =>
-      slugify(post.title).includes(slugify(name))
-    );
+  const { handleUpdateCurrentItems } = usePagination();
 
-    setCurrentPosts(postsFiltered);
+  function handleSearchByName(name: string) {
+    const postsFiltered = postsFetched.filter((post: Post) => {
+      return slugify(post.title).includes(slugify(name));
+    });
+
+    handleUpdateCurrentItems(postsFiltered);
   }
 
   return (

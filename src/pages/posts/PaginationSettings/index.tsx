@@ -4,13 +4,9 @@ import { PaginationsPostsContainer } from "./styles";
 
 import { usePagination } from "../../../context/usePaginationContext";
 
-export function PaginationPosts() {
-  const {
-    qtyPages,
-    activePage,
-    handleNextPage,
-    handlePreviousPage,
-  } = usePagination();
+export function PaginationSettings() {
+  const { qtyPages, activePage, handleNextPage, handlePreviousPage } =
+    usePagination();
 
   function handlePreviousPageClick() {
     handlePreviousPage();

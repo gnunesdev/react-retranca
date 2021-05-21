@@ -14,41 +14,45 @@ interface Post {
 }
 
 export default function ListPosts() {
-  const { activePage, itemsToShow } = usePagination();
+  const { itemsToShow } = usePagination();
 
   return (
     <Container>
       <ul>
-        {itemsToShow.map((post: Post) => (
-          <Link href={`/post/${post.slug}`} key={post.id}>
-            <li className="post__container" key={post.id}>
-              <div className="post__head">
-                <img
-                  src={post.authors[0].profile_image}
-                  alt={`Foto de perfil de ${post.authors[0].name}`}
-                />
-                <div className="posts__head-description">
-                  <time>
-                    {new Intl.DateTimeFormat("pt-BR", {
-                      day: "numeric",
-                      month: "long",
-                      year: "numeric",
-                    }).format(new Date(post.published_at))}
-                  </time>
-                  <h2>{post.title}</h2>
+        {itemsToShow.length ? (
+          itemsToShow.map((post: Post) => (
+            <Link href={`/post/${post.slug}`} key={post.id}>
+              <li className="post__container" key={post.id}>
+                <div className="post__head">
+                  <img
+                    src={post.authors[0].profile_image}
+                    alt={`Foto de perfil de ${post.authors[0].name}`}
+                  />
+                  <div className="posts__head-description">
+                    <time>
+                      {new Intl.DateTimeFormat("pt-BR", {
+                        day: "numeric",
+                        month: "long",
+                        year: "numeric",
+                      }).format(new Date(post.published_at))}
+                    </time>
+                    <h2>{post.title}</h2>
+                  </div>
                 </div>
-              </div>
-              <div className="post__content">
-                <p>{post.excerpt}</p>
-                <ul className="post__tags">
-                  {post.tags.map((tag) => (
-                    <li key={tag.id}>{tag.name}</li>
-                  ))}
-                </ul>
-              </div>
-            </li>
-          </Link>
-        ))}
+                <div className="post__content">
+                  <p>{post.excerpt}</p>
+                  <ul className="post__tags">
+                    {post.tags.map((tag) => (
+                      <li key={tag.id}>{tag.name}</li>
+                    ))}
+                  </ul>
+                </div>
+              </li>
+            </Link>
+          ))
+        ) : (
+          <h2>Não publicações disponíveis com esses filtros :(</h2>
+        )}
       </ul>
       {/* <button onClick={nextPage}>vaiiii</button> */}
     </Container>
