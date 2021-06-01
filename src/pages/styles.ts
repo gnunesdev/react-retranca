@@ -11,6 +11,10 @@ export const HomeContainer = styled.section`
       height: calc(100vh - 10.4rem);
       overflow: hidden;
 
+      @media screen and (max-width: 768px) {
+        height: 100vh;
+      }
+
       &:hover {
         &:before {
           transform: scale(1.02);

@@ -1,20 +1,35 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const PostContainer = styled.div`
   max-width: 720px;
   margin: 10rem auto 10rem;
 
+  .publisher-nav-color {
+    color: white;
+  }
+
+  @media screen and (max-width: 768px) {
+    padding: 0 2rem;
+  }
+
   .post {
+    &__background {
+      @media screen and (min-width: 769px) {
+        position: absolute;
+        background: green;
+        width: 100vh;
+        height: 20rem;
+        top: -4rem;
+        left: 0;
+      }
+    }
+
     &__header {
       > span {
-        width: 100%;
-        height: 1px;
-
         display: block;
-
-        margin: 3rem 0 5rem;
-
-        background-color: ${(props) => props.theme.colors.gray200};
+        margin-top: 2rem;
+        margin-bottom: 6rem;
+        border-bottom: 1px solid ${(props) => props.theme.colors.text};
       }
 
       h1 {
@@ -26,7 +41,7 @@ export const PostContainer = styled.div`
     &__subtitle {
       margin-top: 1rem;
       font-size: 1.8rem;
-      color: ${(props) => props.theme.colors.gray};
+      color: ${(props) => props.theme.colors.text};
     }
 
     &__credits {
@@ -73,7 +88,7 @@ export const PostContainer = styled.div`
         font-weight: 400;
         font-size: 1.9rem;
         line-height: 1.6em;
-        color: ${(props) => props.theme.colors.gray};
+        color: ${(props) => props.theme.colors.text};
         margin-top: 3vmin !important;
       }
 
@@ -90,7 +105,7 @@ export const PostContainer = styled.div`
       }
 
       a {
-        color: ${(props) => props.theme.colors.primary};
+        color: ${(props) => props.theme.colors.coloredText};
         text-decoration: underline;
         word-break: break-word;
       }
@@ -98,6 +113,7 @@ export const PostContainer = styled.div`
       li {
         padding-left: 0.3em;
         line-height: 1.6em;
+        color: ${(props) => props.theme.colors.coloredText};
       }
 
       img {
@@ -119,8 +135,11 @@ export const PostContainer = styled.div`
         padding: 0;
         height: 1px;
         border: 0;
-        border-top: 1px solid ${(props) => props.theme.colors.grayLight};
       }
+    }
+
+    &__footer {
+      margin-top: 7rem;
     }
   }
 `;

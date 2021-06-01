@@ -6,10 +6,9 @@ export const FormEmailContainer = styled.section`
   margin: 0 auto;
 
   h2 {
-    font-size: 3.8rem;
+    font-size: 4.2rem;
     font-weight: bold;
-    color: #3c6e71;
-    text-shadow: 0px 0px 8px -5px rgba(0, 0, 0, 0.8);
+    color: ${(props) => props.theme.colors.coloredText};
     position: relative;
     text-align: center;
   }
@@ -42,18 +41,23 @@ export const FormEmailContainer = styled.section`
   }
 
   .form {
+    &__input-row {
+      margin-bottom: 1.8rem;
+      display: grid;
+      grid-template-columns: auto auto;
+      grid-column-gap: 1rem;
+      width: 100%;
+    }
+
     &__input-container {
       display: flex;
       flex-direction: column;
 
-      &:not(:first-child) {
-        margin-top: 1.4rem;
-      }
-
       label {
         font-size: 1.6rem;
+        font-weight: bold;
         font-family: "Roboto";
-        color: ${(props) => props.theme.colors.primary};
+        color: ${(props) => props.theme.colors.coloredText};
       }
 
       input,

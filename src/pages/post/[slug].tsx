@@ -1,18 +1,45 @@
-import { getSinglePost, getPosts } from '../../lib/posts';
-import { PostContainer } from './styles';
+import { useEffect, useRef } from "react";
+import { getSinglePost, getPosts } from "../../lib/posts";
+import { PostContainer } from "./styles";
+
+import { gsap } from "gsap";
+
+import { CommentEmbed, DiscussionEmbed } from "disqus-react";
 
 interface PostPageProps {
   post: Post;
 }
 
 interface Post {
+  id: string;
+  slug: string;
   title: string;
-  html: string;
+  published_at: string;
+  updated_at: string;
+  excerpt: string;
+  feature_image: string;
+  tags: [{ id: string; name: string }];
+  authors: [{ name: string; profile_image: string }];
 }
 
 export default function Post({ post }: PostPageProps) {
+  const containerRef = useRef(null);
+
+  function createAnimation() {
+    gsap.from(containerRef.current, {
+      opacity: 0,
+      duration: 1,
+      x: 20,
+      ease: "ease",
+    });
+  }
+
+  useEffect(() => {
+    createAnimation();
+  }, []);
+
   return (
-    <PostContainer>
+    <PostContainer ref={containerRef} postImg={post.feature_image}>
       <div className="post__header">
         <h1>{post.title}</h1>
         <p className="post__subtitle">{post.excerpt}</p>
@@ -27,21 +54,21 @@ export default function Post({ post }: PostPageProps) {
             </span>
             <div>
               <time>
-                {new Intl.DateTimeFormat('pt-BR', {
-                  day: 'numeric',
-                  month: 'long',
-                  year: 'numeric',
-                  minute: 'numeric',
-                  hour: 'numeric',
+                {new Intl.DateTimeFormat("pt-BR", {
+                  day: "numeric",
+                  month: "long",
+                  year: "numeric",
+                  minute: "numeric",
+                  hour: "numeric",
                 }).format(new Date(post.published_at))}
               </time>
               <time>
-                {' '}
-                | Última vez atualizado:{' '}
-                {new Intl.DateTimeFormat('pt-BR', {
-                  day: 'numeric',
-                  month: 'long',
-                  year: 'numeric',
+                {" "}
+                | Última vez atualizado:{" "}
+                {new Intl.DateTimeFormat("pt-BR", {
+                  day: "numeric",
+                  month: "long",
+                  year: "numeric",
                 }).format(new Date(post.updated_at))}
               </time>
             </div>
@@ -53,6 +80,17 @@ export default function Post({ post }: PostPageProps) {
         className="post__content"
         dangerouslySetInnerHTML={{ __html: post.html }}
       />
+      <div className="post__footer">
+        <DiscussionEmbed
+          shortname="retranca-1"
+          config={{
+            url: `http://localhost:3000/post/${post.slug}`,
+            identifier: post.id,
+            title: post.title,
+            language: "pt_BR",
+          }}
+        />
+      </div>
     </PostContainer>
   );
 }

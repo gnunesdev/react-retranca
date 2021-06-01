@@ -1,17 +1,21 @@
-import { HeaderContainer } from './styles';
-import Switch from 'react-switch';
-import Link from 'next/link';
+import Switch from "react-switch";
+import { isMobile } from "react-device-detect";
 
+import Link from "next/link";
+
+import { HeaderContainer } from "./styles";
 interface HeaderProps {
   toggleTheme: () => void;
-  isChecked: boolean;
+  isThemeChecked: boolean;
 }
 
-export function Header({ toggleTheme, isChecked }: HeaderProps) {
+export function Header({ toggleTheme, isThemeChecked }: HeaderProps) {
   return (
     <HeaderContainer>
       <header>
-        <h1>.retranca.</h1>
+        <h1>
+          <Link href={"/"}>.retranca.</Link>
+        </h1>
         <nav>
           <ul>
             <li>
@@ -24,7 +28,7 @@ export function Header({ toggleTheme, isChecked }: HeaderProps) {
         </nav>
         <Switch
           className="header__switch-button"
-          checked={isChecked}
+          checked={isThemeChecked}
           onChange={toggleTheme}
           checkedIcon={false}
           uncheckedIcon={false}

@@ -10,17 +10,28 @@ import GlobalStyle from "./../styles/global";
 import light from "./../styles/themes/light";
 import dark from "./../styles/themes/dark";
 
+import Cookie from "js-cookie";
+import { useState } from "react";
+
 function MyApp({ Component, pageProps }) {
-  const [theme, setTheme] = usePersistedState("theme", light);
+  const [persistedTheme, setPersistedTheme] = useState("LIGHT");
+  const activeTheme = persistedTheme === "LIGHT" ? light : dark;
 
   const toggleTheme = () => {
-    theme.title === light.title ? setTheme(dark) : setTheme(light);
+    if (persistedTheme === "LIGHT") {
+      setPersistedTheme("DARK");
+    } else {
+      setPersistedTheme("LIGHT");
+    }
   };
 
   return (
     <>
-      <ThemeProvider theme={theme}>
-        <Header isChecked={theme === dark} toggleTheme={toggleTheme} />
+      <ThemeProvider theme={activeTheme}>
+        <Header
+          isThemeChecked={activeTheme === dark}
+          toggleTheme={toggleTheme}
+        />
         <Footer />
         <GlobalStyle />
         <Component {...pageProps} />

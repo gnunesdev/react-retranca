@@ -1,9 +1,39 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { FormEmailContainer } from "./styles";
 
 import { api } from "./../../services/api";
 
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
+
 export function FormEmail() {
+  const formEmailTitleRef = useRef(null);
+  const formEmailContentRef = useRef(null);
+
+  function createAnimation() {
+    gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: formEmailTitleRef.current,
+          start: "top 75%",
+        },
+      })
+      .from(formEmailTitleRef.current, {
+        opacity: 0,
+        duration: 1,
+      })
+      .from(formEmailContentRef.current, {
+        opacity: 0,
+        y: 20,
+        ease: "ease",
+      });
+  }
+
+  useEffect(() => {
+    createAnimation();
+  }, []);
+
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
@@ -28,23 +58,25 @@ export function FormEmail() {
 
   return (
     <FormEmailContainer>
-      <h2>.Entre em contato comigo!</h2>
-      <form>
-        <div className="form__input-container">
-          <label htmlFor="">Qual o seu nome?</label>
-          <input
-            type="text"
-            onChange={(e) => handleChangeInput(e, setName)}
-            value={name}
-          />
-        </div>
-        <div className="form__input-container">
-          <label htmlFor="">Qual o seu e-mail?</label>
-          <input
-            type="text"
-            onChange={(event) => handleChangeInput(event, setEmail)}
-            value={email}
-          />
+      <h2 ref={formEmailTitleRef}>.Entre em contato comigo</h2>
+      <form ref={formEmailContentRef}>
+        <div className="form__input-row">
+          <div className="form__input-container">
+            <label htmlFor="">Qual o seu nome?</label>
+            <input
+              type="text"
+              onChange={(e) => handleChangeInput(e, setName)}
+              value={name}
+            />
+          </div>
+          <div className="form__input-container">
+            <label htmlFor="">Qual o seu e-mail?</label>
+            <input
+              type="text"
+              onChange={(event) => handleChangeInput(event, setEmail)}
+              value={email}
+            />
+          </div>
         </div>
         <div className="form__input-container">
           <label htmlFor="">O que você gostaria de conversar?</label>

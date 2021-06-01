@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const MainPostsContainer = styled.div`
   display: grid;
@@ -14,7 +14,6 @@ interface PostContainerProps {
 
 export const PostContainer = styled.div<PostContainerProps>`
   position: relative;
-  border: 1px solid ${(props) => props.theme.colors.gray100};
   background: white;
   padding: 2rem 2rem 3rem;
   box-shadow: 0px 0px 6px -5px rgba(0, 0, 0, 0.2);
@@ -43,7 +42,7 @@ export const PostContainer = styled.div<PostContainerProps>`
   }
 
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     background-image: url(${(props) => props.postImg});
     background-position: center;
@@ -70,7 +69,7 @@ export const PostContainer = styled.div<PostContainerProps>`
     right: 0;
     bottom: 0;
     left: 0;
-    content: '';
+    content: "";
   }
 
   > a {

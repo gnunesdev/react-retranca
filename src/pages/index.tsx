@@ -6,7 +6,10 @@ import { FormEmail } from "../components/FormEmail";
 import { MainPosts } from "../components/MainPosts";
 import { RecentPosts } from "../components/RecentPosts";
 import { useEffect, useRef } from "react";
-import gsap from "gsap";
+
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
 
 interface HomeProps {
   mainPosts: [any];
@@ -14,21 +17,72 @@ interface HomeProps {
 }
 
 export default function Home({ mainPosts, recentPosts }: HomeProps) {
-  const containerRef = useRef(null);
-  const titleRef = useRef(null);
+  const mainTitleRef = useRef(null);
 
-  useEffect(() => {
-    gsap.from(titleRef.current, {
+  const mainPostTitleRef = useRef(null);
+  const mainPostsContainerRef = useRef(null);
+
+  const recentPostsTitleRef = useRef(null);
+  const recentPostsContainerRef = useRef(null);
+
+  function handleCreateInitialAnimate() {
+    gsap.from(mainTitleRef.current, {
       y: 50,
       opacity: 0,
-      duration: 1,
+      duration: 1.5,
     });
+
+    // MainPosts
+    gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: mainPostTitleRef.current,
+          start: "top 75%",
+        },
+      })
+      .from(mainPostTitleRef.current, {
+        opacity: 0,
+        y: 40,
+        duration: 1,
+        ease: "ease",
+      })
+      .from(mainPostsContainerRef.current, {
+        opacity: 0,
+        y: 50,
+        duration: 1,
+        ease: "ease",
+      });
+
+    // PostsRecentes
+    gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: recentPostsTitleRef.current,
+          start: "top 75%",
+        },
+      })
+      .from(recentPostsTitleRef.current, {
+        opacity: 0,
+        y: 40,
+        duration: 1,
+        ease: "ease",
+      })
+      .from(recentPostsContainerRef.current, {
+        opacity: 0,
+        y: 50,
+        duration: 1,
+        ease: "ease",
+      });
+  }
+
+  useEffect(() => {
+    handleCreateInitialAnimate();
   }, []);
 
   return (
-    <HomeContainer ref={containerRef}>
+    <HomeContainer>
       <div className="home__intro">
-        <div className="home__intro-content" ref={titleRef}>
+        <div className="home__intro-content" ref={mainTitleRef}>
           <h1>.retranca.</h1>
           <p>
             Essa é uma descrição bacana sobre o retranca, tuti você deve pensar
@@ -37,15 +91,23 @@ export default function Home({ mainPosts, recentPosts }: HomeProps) {
         </div>
       </div>
       <div className="home__section has--container">
-        <div className="home__section-container">
-          <h2 className="home__section-title">.Postagens principais</h2>
-          <MainPosts posts={mainPosts}></MainPosts>
+        <div className="home__section-container" id="teste">
+          <h2 className="home__section-title" ref={mainPostTitleRef}>
+            .Postagens principais
+          </h2>
+          <div ref={mainPostsContainerRef}>
+            <MainPosts posts={mainPosts}></MainPosts>
+          </div>
         </div>
       </div>
       <div className="home__section has--background">
         <div className="home__section-container">
-          <h2 className="home__section-title">.Postagens mais recentes</h2>
-          <RecentPosts posts={recentPosts}></RecentPosts>
+          <h2 className="home__section-title" ref={recentPostsTitleRef}>
+            .Postagens mais recentes
+          </h2>
+          <div ref={recentPostsContainerRef}>
+            <RecentPosts posts={recentPosts}></RecentPosts>
+          </div>
         </div>
       </div>
       <div className="home__section has--container">

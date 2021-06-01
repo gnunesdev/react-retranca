@@ -20,16 +20,29 @@ export const HeaderContainer = styled.div`
     @media screen and (max-width: 1180px) {
       padding: 0 8rem;
     }
+
+    @media screen and (max-width: 768px) {
+      padding: 0 2rem;
+      justify-content: space-between;
+    }
   }
 
   .header {
     &__switch-button {
       margin-left: auto;
+
+      @media screen and (max-width: 768px) {
+        margin: 0;
+      }
     }
   }
 
   nav {
     margin-left: 8rem;
+
+    @media screen and (max-width: 768px) {
+      margin: 0;
+    }
   }
 
   ul {

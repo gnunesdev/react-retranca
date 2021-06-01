@@ -1,4 +1,6 @@
+import gsap from "gsap";
 import Link from "next/link";
+import { useEffect, useRef } from "react";
 
 import { usePagination } from "../../../context/usePaginationContext";
 import { Container } from "./styles";

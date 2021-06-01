@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Container = styled.section`
   .post {
@@ -10,14 +10,14 @@ export const Container = styled.section`
       color: ${(props) => props.theme.colors.gray};
 
       &:after {
-        content: '';
+        content: "";
         width: 100%;
         height: 100%;
         background: transparent;
         border: 1px solid;
         ${(props) =>
-          props.theme.title === 'light'
-            ? 'border-color: #dedede;'
+          props.theme.title === "light"
+            ? "border-color: #dedede;"
             : `border-color: rgb(45, 45, 45);`}
         border-radius: 4px;
 
@@ -45,8 +45,10 @@ export const Container = styled.section`
       img {
         border-radius: 50%;
         width: 4.2rem;
+        min-width: 4.2rem;
         height: 4.2rem;
         margin-right: 1.4rem;
+        display: block;
       }
 
       time {

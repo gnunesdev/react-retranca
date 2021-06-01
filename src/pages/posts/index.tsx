@@ -4,8 +4,9 @@ import { Container } from "./styles";
 import ListPosts from "./ListPosts";
 import { PaginationSettings } from "./PaginationSettings";
 import { PostsProvider } from "../../context/usePostsContext";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FilterSettings } from "./FilterSettings";
+import gsap from "gsap";
 
 interface PostsProps {
   posts: Array<Post>;
@@ -21,10 +22,25 @@ interface Post {
 }
 
 export default function Posts({ posts }: PostsProps) {
+  const containerRef = useRef(null);
+
+  function handleInitialAnimation() {
+    gsap.from(containerRef.current, {
+      opacity: 0,
+      duration: 1,
+      x: 20,
+      ease: "ease",
+    });
+  }
+
+  useEffect(() => {
+    handleInitialAnimation();
+  }, []);
+
   return (
     <PaginationProvider qtyItemsToShow={6} items={posts}>
       <PostsProvider postsFetched={posts}>
-        <Container>
+        <Container ref={containerRef}>
           <FilterSettings></FilterSettings>
           <ListPosts></ListPosts>
           <PaginationSettings></PaginationSettings>
