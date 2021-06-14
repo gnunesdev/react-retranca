@@ -1,6 +1,4 @@
-import gsap from "gsap";
 import Link from "next/link";
-import { useEffect, useRef } from "react";
 
 import { usePagination } from "../../../context/usePaginationContext";
 import { Container } from "./styles";
@@ -56,7 +54,6 @@ export default function ListPosts() {
           <h2>Não publicações disponíveis com esses filtros :(</h2>
         )}
       </ul>
-      {/* <button onClick={nextPage}>vaiiii</button> */}
     </Container>
   );
 }

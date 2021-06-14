@@ -8,8 +8,8 @@ import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 export function FormEmail() {
-  const formEmailTitleRef = useRef(null);
-  const formEmailContentRef = useRef(null);
+  const formEmailTitleRef = useRef("");
+  const formEmailContentRef = useRef("");
 
   function createAnimation() {
     gsap

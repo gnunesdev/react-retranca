@@ -49,6 +49,10 @@ export const Container = styled.section`
         height: 4.2rem;
         margin-right: 1.4rem;
         display: block;
+
+        @media screen and (max-width: 768px) {
+          display: none;
+        }
       }
 
       time {

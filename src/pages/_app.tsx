@@ -1,5 +1,3 @@
-import usePersistedState from "./../utils/usePersistedState";
-
 import { ThemeProvider } from "styled-components";
 
 import { Header } from "../components/Header";
@@ -10,7 +8,6 @@ import GlobalStyle from "./../styles/global";
 import light from "./../styles/themes/light";
 import dark from "./../styles/themes/dark";
 
-import Cookie from "js-cookie";
 import { useState } from "react";
 
 function MyApp({ Component, pageProps }) {

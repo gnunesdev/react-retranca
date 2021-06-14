@@ -17,13 +17,13 @@ interface HomeProps {
 }
 
 export default function Home({ mainPosts, recentPosts }: HomeProps) {
-  const mainTitleRef = useRef(null);
+  const mainTitleRef = useRef("");
 
-  const mainPostTitleRef = useRef(null);
-  const mainPostsContainerRef = useRef(null);
+  const mainPostTitleRef = useRef("");
+  const mainPostsContainerRef = useRef("");
 
-  const recentPostsTitleRef = useRef(null);
-  const recentPostsContainerRef = useRef(null);
+  const recentPostsTitleRef = useRef("");
+  const recentPostsContainerRef = useRef("");
 
   function handleCreateInitialAnimate() {
     gsap.from(mainTitleRef.current, {
@@ -103,7 +103,7 @@ export default function Home({ mainPosts, recentPosts }: HomeProps) {
       <div className="home__section has--background">
         <div className="home__section-container">
           <h2 className="home__section-title" ref={recentPostsTitleRef}>
-            .Postagens mais recentes
+            .Postagens recentes
           </h2>
           <div ref={recentPostsContainerRef}>
             <RecentPosts posts={recentPosts}></RecentPosts>

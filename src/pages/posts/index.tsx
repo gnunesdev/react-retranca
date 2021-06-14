@@ -22,7 +22,7 @@ interface Post {
 }
 
 export default function Posts({ posts }: PostsProps) {
-  const containerRef = useRef(null);
+  const containerRef = useRef("");
 
   function handleInitialAnimation() {
     gsap.from(containerRef.current, {

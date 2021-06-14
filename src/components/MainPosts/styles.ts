@@ -6,6 +6,11 @@ export const MainPostsContainer = styled.div`
   margin: 0 auto;
   grid-column-gap: 0.8rem;
   grid-row-gap: 0.8rem;
+
+  @media screen and (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+  }
 `;
 
 interface PostContainerProps {
@@ -20,6 +25,12 @@ export const PostContainer = styled.div<PostContainerProps>`
   border-radius: 8px;
   overflow: hidden;
 
+  &:not(:first-child) {
+    @media screen and (max-width: 768px) {
+      margin-top: 2rem;
+    }
+  }
+
   &:first-child {
     grid-column: 1;
     grid-row: 1/3;
@@ -30,6 +41,10 @@ export const PostContainer = styled.div<PostContainerProps>`
 
     p {
       font-size: 1.6rem;
+
+      @media screen and (max-width: 768px) {
+        font-size: 2.4rem;
+      }
     }
   }
 
@@ -96,6 +111,10 @@ export const PostContainer = styled.div<PostContainerProps>`
       margin-top: 2rem;
       text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
       color: white !important;
+
+      @media screen and (max-width: 768px) {
+        font-size: 3.4rem;
+      }
     }
 
     p {
@@ -103,6 +122,11 @@ export const PostContainer = styled.div<PostContainerProps>`
       margin-top: 0.8rem;
       text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
       color: white;
+
+      @media screen and (max-width: 768px) {
+        font-size: 2.2rem;
+        margin-top: 2rem;
+      }
     }
   }
 `;

@@ -30,11 +30,19 @@ export const PostContainer = styled.div`
         margin-top: 2rem;
         margin-bottom: 6rem;
         border-bottom: 1px solid ${(props) => props.theme.colors.text};
+
+        @media screen and (max-width: 768px) {
+          margin-bottom: 4rem;
+        }
       }
 
       h1 {
         font-size: 4.2rem;
         color: ${(props) => props.theme.colors.text};
+
+        @media screen and (max-width: 768px) {
+          font-size: 3rem;
+        }
       }
     }
 
@@ -59,6 +67,7 @@ export const PostContainer = styled.div`
       img {
         border-radius: 50%;
         width: 4.2rem;
+        min-width: 4.2rem;
         height: 4.2rem;
         margin-right: 1.4rem;
       }
@@ -66,10 +75,18 @@ export const PostContainer = styled.div`
       span {
         display: block;
         font-size: 1.6rem;
+
+        @media screen and (max-width: 768px) {
+          font-size: 1.6rem;
+        }
       }
 
       time {
         font-size: 1.6rem;
+
+        @media screen and (max-width: 768px) {
+          font-size: 1.4rem;
+        }
       }
     }
 
@@ -90,6 +107,11 @@ export const PostContainer = styled.div`
         line-height: 1.6em;
         color: ${(props) => props.theme.colors.text};
         margin-top: 3vmin !important;
+
+        @media screen and (max-width: 768px) {
+          font-size: 1.8rem;
+          margin-top: 2.2rem !important;
+        }
       }
 
       ul {

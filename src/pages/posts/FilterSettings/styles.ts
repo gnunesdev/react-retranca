@@ -17,6 +17,7 @@ export const FilterSettingsContainer = styled.div`
         padding: 0 1rem;
         width: 100%;
         height: 100%;
+        border: 1px solid ${(props) => props.theme.colors.gray200};
       }
 
       button {

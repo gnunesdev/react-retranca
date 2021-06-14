@@ -63,6 +63,10 @@ export const HomeContainer = styled.section`
       max-width: 1280px;
       margin: 0 auto;
       padding: 0 6rem;
+
+      @media screen and (max-width: 768px) {
+        padding: 0 3rem;
+      }
     }
 
     &__section {
@@ -80,6 +84,10 @@ export const HomeContainer = styled.section`
       &.has--background {
         padding: 7rem 0 7rem;
         background: ${(props) => props.theme.colors.backgroundHarder};
+
+        @media screen and (max-width: 768px) {
+          padding: 5rem 0 6rem;
+        }
       }
     }
 
@@ -89,6 +97,10 @@ export const HomeContainer = styled.section`
       margin-bottom: 2rem;
       color: ${(props) => props.theme.colors.primary};
       position: relative;
+
+      @media screen and (max-width: 768px) {
+        font-size: 3.6rem;
+      }
     }
   }
 `;

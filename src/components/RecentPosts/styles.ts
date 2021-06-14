@@ -11,8 +11,17 @@ export const RecentPostsContainer = styled.section`
 
       a {
         display: flex;
+
+        @media screen and (max-width: 768px) {
+          flex-direction: column;
+        }
+
         > div {
           margin-left: 2rem;
+
+          @media screen and (max-width: 768px) {
+            margin: 2rem 0 0;
+          }
         }
       }
 
@@ -21,6 +30,15 @@ export const RecentPostsContainer = styled.section`
         color: ${(props) => props.theme.colors.text};
         margin-top: 0.8rem;
         line-height: 2.2rem;
+
+        @media screen and (max-width: 768px) {
+          display: inline-block;
+          overflow: hidden;
+          width: 100%;
+          max-height: 80px;
+          text-overflow: initial;
+          white-space: nowrap;
+        }
       }
 
       time {
@@ -34,7 +52,10 @@ export const RecentPostsContainer = styled.section`
         width: 300px;
         max-height: 200px;
         object-fit: cover;
-        border-radius: 8px;
+
+        @media screen and (max-width: 768px) {
+          width: 100%;
+        }
       }
 
       h3 {

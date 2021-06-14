@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const HeaderContainer = styled.div`
   background: ${(props) => props.theme.colors.primary};
-  width: 100%;
+  width: 100vw;
   box-shadow: 0px 0px 8px -5px rgba(0, 0, 0, 0.8);
   position: fixed;
   top: 0;

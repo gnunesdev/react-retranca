@@ -1,10 +1,11 @@
-import { useEffect, useRef } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { getSinglePost, getPosts } from "../../lib/posts";
 import { PostContainer } from "./styles";
 
 import { gsap } from "gsap";
 
-import { CommentEmbed, DiscussionEmbed } from "disqus-react";
+import { DiscussionEmbed } from "disqus-react";
+import { ThemeContext } from "styled-components";
 
 interface PostPageProps {
   post: Post;
@@ -23,7 +24,7 @@ interface Post {
 }
 
 export default function Post({ post }: PostPageProps) {
-  const containerRef = useRef(null);
+  const containerRef = useRef("");
 
   function createAnimation() {
     gsap.from(containerRef.current, {
@@ -38,8 +39,11 @@ export default function Post({ post }: PostPageProps) {
     createAnimation();
   }, []);
 
+  const themeContext = useContext(ThemeContext);
+  console.log("theme rendered", themeContext);
+
   return (
-    <PostContainer ref={containerRef} postImg={post.feature_image}>
+    <PostContainer ref={containerRef}>
       <div className="post__header">
         <h1>{post.title}</h1>
         <p className="post__subtitle">{post.excerpt}</p>
@@ -53,7 +57,7 @@ export default function Post({ post }: PostPageProps) {
               Publicado por <strong>{post.authors[0].name}</strong>
             </span>
             <div>
-              <time>
+              <time dateTime={post.published_at}>
                 {new Intl.DateTimeFormat("pt-BR", {
                   day: "numeric",
                   month: "long",
@@ -62,7 +66,7 @@ export default function Post({ post }: PostPageProps) {
                   hour: "numeric",
                 }).format(new Date(post.published_at))}
               </time>
-              <time>
+              <time dateTime={post.updated_at}>
                 {" "}
                 | Última vez atualizado:{" "}
                 {new Intl.DateTimeFormat("pt-BR", {
@@ -89,6 +93,7 @@ export default function Post({ post }: PostPageProps) {
             title: post.title,
             language: "pt_BR",
           }}
+          fakeTheme={themeContext}
         />
       </div>
     </PostContainer>
@@ -98,7 +103,7 @@ export default function Post({ post }: PostPageProps) {
 export async function getStaticPaths() {
   const posts = await getPosts();
 
-  const paths = posts.map((post) => ({
+  const paths = posts.map((post: Post) => ({
     params: { slug: post.slug },
   }));
 
