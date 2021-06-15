@@ -1,11 +1,12 @@
 import { useContext, useEffect, useRef } from "react";
 import { getSinglePost, getPosts } from "../../lib/posts";
-import { PostContainer } from "./styles";
+import { PostContainer } from "./../../styles/pages/post";
 
 import { gsap } from "gsap";
 
 import { DiscussionEmbed } from "disqus-react";
 import { ThemeContext } from "styled-components";
+import { GetStaticProps } from "next";
 
 interface PostPageProps {
   post: Post;
@@ -19,12 +20,12 @@ interface Post {
   updated_at: string;
   excerpt: string;
   feature_image: string;
-  tags: [{ id: string; name: string }];
   authors: [{ name: string; profile_image: string }];
+  html: any;
 }
 
 export default function Post({ post }: PostPageProps) {
-  const containerRef = useRef("");
+  const containerRef = useRef(null);
 
   function createAnimation() {
     gsap.from(containerRef.current, {
@@ -40,7 +41,6 @@ export default function Post({ post }: PostPageProps) {
   }, []);
 
   const themeContext = useContext(ThemeContext);
-  console.log("theme rendered", themeContext);
 
   return (
     <PostContainer ref={containerRef}>
@@ -93,6 +93,7 @@ export default function Post({ post }: PostPageProps) {
             title: post.title,
             language: "pt_BR",
           }}
+          // @ts-ignore
           fakeTheme={themeContext}
         />
       </div>
@@ -103,6 +104,7 @@ export default function Post({ post }: PostPageProps) {
 export async function getStaticPaths() {
   const posts = await getPosts();
 
+  //@ts-ignore
   const paths = posts.map((post: Post) => ({
     params: { slug: post.slug },
   }));
@@ -111,16 +113,24 @@ export async function getStaticPaths() {
   return { paths, fallback: false };
 }
 
-export async function getStaticProps(context) {
-  const post = await getSinglePost(context.params.slug);
+export const getStaticProps: GetStaticProps = async (context: any) => {
+  try {
+    const post = await getSinglePost(context.params.slug);
 
-  if (!post) {
+    if (!post) {
+      return {
+        notFound: true,
+      };
+    }
+
+    return {
+      props: { post },
+    };
+  } catch (error) {
+    console.error(error);
+
     return {
       notFound: true,
     };
   }
-
-  return {
-    props: { post },
-  };
-}
+};

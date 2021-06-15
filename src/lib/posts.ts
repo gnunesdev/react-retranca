@@ -1,16 +1,16 @@
-import GhostContentAPI from '@tryghost/content-api';
+import GhostContentAPI from "@tryghost/content-api";
 
 const api = new GhostContentAPI({
-  url: 'http://localhost:2368',
-  key: '0c4b542a15945a697e1bd412c0',
-  version: 'v3',
+  url: process.env.CURRENT_URL as string,
+  key: process.env.CONTENT_API_KEY as string,
+  version: "v3",
 });
 
 export async function getPosts() {
   return await api.posts
     .browse({
-      include: 'tags,authors',
-      limit: 'all',
+      include: ["tags", "authors"],
+      limit: "all",
     })
     .catch((err: Error) => {
       console.error(err);
@@ -18,12 +18,15 @@ export async function getPosts() {
 }
 
 export async function getSinglePost(postSlug: string) {
+  console.log("abc");
   return await api.posts
     .read({
+      // @ts-ignore
+      include: ["tags", "authors"],
       slug: postSlug,
-      include: 'tags,authors',
     })
     .catch((err: Error) => {
+      console.log("dce");
       console.error(err);
     });
 }
@@ -31,7 +34,7 @@ export async function getSinglePost(postSlug: string) {
 export async function getPostsFilterdByTag(filter: string, limit = 6) {
   return await api.posts.browse({
     limit: String(limit),
-    include: 'tags,authors',
+    include: ["tags", "authors"],
     filter: `tag:${filter}`,
   });
 }
@@ -39,7 +42,7 @@ export async function getPostsFilterdByTag(filter: string, limit = 6) {
 export async function getPostsLimited(limit = 6) {
   return await api.posts.browse({
     limit: String(limit),
-    include: 'tags,authors',
+    include: ["tags", "authors"],
   });
 }
 
@@ -47,6 +50,6 @@ export async function getPostsTest(limit = 5) {
   return await api.posts.browse({
     limit: String(limit),
     filter: `tag:-main`,
-    include: 'tags,authors',
+    include: ["tags", "authors"],
   });
 }

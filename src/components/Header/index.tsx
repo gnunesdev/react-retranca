@@ -1,5 +1,4 @@
 import Switch from "react-switch";
-import { isMobile } from "react-device-detect";
 
 import Link from "next/link";
 

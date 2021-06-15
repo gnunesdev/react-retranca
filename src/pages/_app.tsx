@@ -9,8 +9,9 @@ import light from "./../styles/themes/light";
 import dark from "./../styles/themes/dark";
 
 import { useState } from "react";
+import { AppProps } from "next/app";
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps }: AppProps) {
   const [persistedTheme, setPersistedTheme] = useState("LIGHT");
   const activeTheme = persistedTheme === "LIGHT" ? light : dark;
 

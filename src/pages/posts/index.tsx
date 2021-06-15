@@ -1,11 +1,11 @@
 import { PaginationProvider } from "../../context/usePaginationContext";
 import { getPosts } from "../../lib/posts";
-import { Container } from "./styles";
-import ListPosts from "./ListPosts";
-import { PaginationSettings } from "./PaginationSettings";
+import { Container } from "./../../styles/pages/posts";
+import ListPosts from "./../../components/ListPosts";
+import { PaginationSettings } from "./../../components/PaginationSettings";
 import { PostsProvider } from "../../context/usePostsContext";
-import { useEffect, useRef, useState } from "react";
-import { FilterSettings } from "./FilterSettings";
+import { useEffect, useRef } from "react";
+import { FilterSettings } from "../../components/FilterSettings";
 import gsap from "gsap";
 
 interface PostsProps {
@@ -22,7 +22,7 @@ interface Post {
 }
 
 export default function Posts({ posts }: PostsProps) {
-  const containerRef = useRef("");
+  const containerRef = useRef(null);
 
   function handleInitialAnimation() {
     gsap.from(containerRef.current, {
@@ -51,15 +51,22 @@ export default function Posts({ posts }: PostsProps) {
 }
 
 export const getStaticProps = async () => {
-  const posts = await getPosts();
+  try {
+    const posts = await getPosts();
 
-  if (!posts) {
+    if (!posts) {
+      return {
+        notFound: true,
+      };
+    }
+
+    return {
+      props: { posts },
+    };
+  } catch (error) {
+    console.error(error);
     return {
       notFound: true,
     };
   }
-
-  return {
-    props: { posts },
-  };
 };

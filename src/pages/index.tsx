@@ -1,4 +1,4 @@
-import { HomeContainer } from "./styles";
+import { HomeContainer } from "./../styles/pages/home";
 
 import { getPostsFilterdByTag, getPostsTest } from "../lib/posts";
 
@@ -17,13 +17,13 @@ interface HomeProps {
 }
 
 export default function Home({ mainPosts, recentPosts }: HomeProps) {
-  const mainTitleRef = useRef("");
+  const mainTitleRef = useRef(null);
 
-  const mainPostTitleRef = useRef("");
-  const mainPostsContainerRef = useRef("");
+  const mainPostTitleRef = useRef(null);
+  const mainPostsContainerRef = useRef(null);
 
-  const recentPostsTitleRef = useRef("");
-  const recentPostsContainerRef = useRef("");
+  const recentPostsTitleRef = useRef(null);
+  const recentPostsContainerRef = useRef(null);
 
   function handleCreateInitialAnimate() {
     gsap.from(mainTitleRef.current, {
@@ -36,6 +36,7 @@ export default function Home({ mainPosts, recentPosts }: HomeProps) {
     gsap
       .timeline({
         scrollTrigger: {
+          // @ts-ignore
           trigger: mainPostTitleRef.current,
           start: "top 75%",
         },
@@ -57,6 +58,7 @@ export default function Home({ mainPosts, recentPosts }: HomeProps) {
     gsap
       .timeline({
         scrollTrigger: {
+          //@ts-ignore
           trigger: recentPostsTitleRef.current,
           start: "top 75%",
         },
@@ -118,16 +120,23 @@ export default function Home({ mainPosts, recentPosts }: HomeProps) {
 }
 
 export const getStaticProps = async () => {
-  const mainPosts = await getPostsFilterdByTag("main", 3);
-  const recentPosts = await getPostsTest(5);
+  try {
+    const mainPosts = await getPostsFilterdByTag("main", 3);
+    const recentPosts = await getPostsTest(5);
 
-  if (!mainPosts || !recentPosts) {
+    if (!mainPosts || !recentPosts) {
+      return {
+        notFound: true,
+      };
+    }
+
+    return {
+      props: { mainPosts, recentPosts },
+    };
+  } catch (error) {
+    console.error(error);
     return {
       notFound: true,
     };
   }
-
-  return {
-    props: { mainPosts, recentPosts },
-  };
 };

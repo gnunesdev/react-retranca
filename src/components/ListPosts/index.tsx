@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { usePagination } from "../../../context/usePaginationContext";
+import { usePagination } from "../../context/usePaginationContext";
 import { Container } from "./styles";
 
 interface Post {

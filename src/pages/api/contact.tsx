@@ -1,4 +1,6 @@
-export default function (req, res) {
+import { NextApiRequest } from "next";
+
+export default function (req: NextApiRequest) {
   let nodemailer = require("nodemailer");
 
   const transporter = nodemailer.createTransport({
@@ -26,7 +28,7 @@ export default function (req, res) {
         transporter.close();
         return resolve(response);
       })
-      .catch((error) => {
+      .catch((error: Error) => {
         transporter.close();
         return reject(error);
       });

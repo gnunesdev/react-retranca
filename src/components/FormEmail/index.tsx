@@ -8,13 +8,14 @@ import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 export function FormEmail() {
-  const formEmailTitleRef = useRef("");
-  const formEmailContentRef = useRef("");
+  const formEmailTitleRef = useRef(null);
+  const formEmailContentRef = useRef(null);
 
   function createAnimation() {
     gsap
       .timeline({
         scrollTrigger: {
+          // @ts-ignore
           trigger: formEmailTitleRef.current,
           start: "top 75%",
         },
@@ -39,7 +40,7 @@ export function FormEmail() {
   const [message, setMessage] = useState("");
 
   function handleChangeInput(
-    event: React.ChangeEvent<HTMLInputElement>,
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
     setFunction: any
   ) {
     setFunction(event.target.value);

@@ -1,8 +1,8 @@
-import { Button } from "../../../components/Button";
+import { Button } from "./../Button";
 
 import { PaginationsPostsContainer } from "./styles";
 
-import { usePagination } from "../../../context/usePaginationContext";
+import { usePagination } from "../../context/usePaginationContext";
 
 export function PaginationSettings() {
   const { qtyPages, activePage, handleNextPage, handlePreviousPage } =
@@ -26,7 +26,7 @@ export function PaginationSettings() {
         disabled={activePage === 1 ? true : false}
       ></Button>
       <ul>
-        {[...Array(qtyPages)].map((item, index) => (
+        {[...Array(qtyPages)].map((_item, index) => (
           <li key={index}>
             <span
               className={activePage === index + 1 ? "is--active" : ""}

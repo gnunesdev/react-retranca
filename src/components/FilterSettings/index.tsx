@@ -3,9 +3,9 @@ import { useState } from "react";
 import { useContext } from "react";
 import { ThemeContext } from "styled-components";
 
-import { Button } from "../../../components/Button";
+import { Button } from "../Button";
 
-import { usePostsContext } from "./../../../context/usePostsContext";
+import { usePostsContext } from "../../context/usePostsContext";
 
 import { FaSearch } from "react-icons/fa";
 import { MdClear } from "react-icons/md";

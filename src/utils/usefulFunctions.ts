@@ -11,6 +11,7 @@ export const slugify = (str: string) => {
   };
 
   for (var pattern in mapSpecialCharacters) {
+    //@ts-ignore
     str = str.replace(new RegExp(mapSpecialCharacters[pattern], "g"), pattern);
   }
 
