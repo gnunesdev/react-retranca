@@ -30,15 +30,6 @@ export const RecentPostsContainer = styled.section`
         color: ${(props) => props.theme.colors.text};
         margin-top: 0.8rem;
         line-height: 2.2rem;
-
-        @media screen and (max-width: 768px) {
-          display: inline-block;
-          overflow: hidden;
-          width: 100%;
-          max-height: 80px;
-          text-overflow: initial;
-          white-space: nowrap;
-        }
       }
 
       time {

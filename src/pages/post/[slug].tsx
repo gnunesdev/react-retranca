@@ -43,59 +43,61 @@ export default function Post({ post }: PostPageProps) {
   const themeContext = useContext(ThemeContext);
 
   return (
-    <PostContainer ref={containerRef}>
-      <div className="post__header">
-        <h1>{post.title}</h1>
-        <p className="post__subtitle">{post.excerpt}</p>
-        <div className="post__credits">
-          <img
-            src={post.authors[0].profile_image}
-            alt={`Foto de perfil de ${post.authors[0].name}`}
-          />
-          <div>
-            <span>
-              Publicado por <strong>{post.authors[0].name}</strong>
-            </span>
+    <PostContainer>
+      <div ref={containerRef}>
+        <div className="post__header">
+          <h1>{post.title}</h1>
+          <p className="post__subtitle">{post.excerpt}</p>
+          <div className="post__credits">
+            <img
+              src={post.authors[0].profile_image}
+              alt={`Foto de perfil de ${post.authors[0].name}`}
+            />
             <div>
-              <time dateTime={post.published_at}>
-                {new Intl.DateTimeFormat("pt-BR", {
-                  day: "numeric",
-                  month: "long",
-                  year: "numeric",
-                  minute: "numeric",
-                  hour: "numeric",
-                }).format(new Date(post.published_at))}
-              </time>
-              <time dateTime={post.updated_at}>
-                {" "}
-                | Última vez atualizado:{" "}
-                {new Intl.DateTimeFormat("pt-BR", {
-                  day: "numeric",
-                  month: "long",
-                  year: "numeric",
-                }).format(new Date(post.updated_at))}
-              </time>
+              <span>
+                Publicado por <strong>{post.authors[0].name}</strong>
+              </span>
+              <div>
+                <time dateTime={post.published_at}>
+                  {new Intl.DateTimeFormat("pt-BR", {
+                    day: "numeric",
+                    month: "long",
+                    year: "numeric",
+                    minute: "numeric",
+                    hour: "numeric",
+                  }).format(new Date(post.published_at))}
+                </time>
+                <time dateTime={post.updated_at}>
+                  {" "}
+                  | Última vez atualizado:{" "}
+                  {new Intl.DateTimeFormat("pt-BR", {
+                    day: "numeric",
+                    month: "long",
+                    year: "numeric",
+                  }).format(new Date(post.updated_at))}
+                </time>
+              </div>
             </div>
           </div>
+          <span></span>
         </div>
-        <span></span>
-      </div>
-      <div
-        className="post__content"
-        dangerouslySetInnerHTML={{ __html: post.html }}
-      />
-      <div className="post__footer">
-        <DiscussionEmbed
-          shortname="retranca-1"
-          config={{
-            url: `${process.env.CURRENT_URL}/post/${post.slug}`,
-            identifier: post.id,
-            title: post.title,
-            language: "pt_BR",
-          }}
-          // @ts-ignore
-          fakeTheme={themeContext}
+        <div
+          className="post__content"
+          dangerouslySetInnerHTML={{ __html: post.html }}
         />
+        <div className="post__footer">
+          <DiscussionEmbed
+            shortname="retranca-1"
+            config={{
+              url: `${process.env.CURRENT_URL}/post/${post.slug}`,
+              identifier: post.id,
+              title: post.title,
+              language: "pt_BR",
+            }}
+            // @ts-ignore
+            fakeTheme={themeContext}
+          />
+        </div>
       </div>
     </PostContainer>
   );

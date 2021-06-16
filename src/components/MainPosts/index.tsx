@@ -1,3 +1,6 @@
+import { isMobile } from "react-device-detect";
+import { EllipsisText } from "../EllipsisText";
+
 import { MainPostsContainer, PostContainer } from "./styles";
 interface MainPostsProps {
   posts: Array<Post>;
@@ -27,7 +30,13 @@ export function MainPosts({ posts }: MainPostsProps) {
               </time>
             </header>
             <h2>{post.title}</h2>
-            <p>{post.excerpt}</p>
+            {!isMobile ? (
+              <p>{post.excerpt}</p>
+            ) : (
+              <p>
+                <EllipsisText text={post.excerpt} maxLength={15} />
+              </p>
+            )}
           </a>
         </PostContainer>
       ))}

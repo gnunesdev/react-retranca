@@ -95,6 +95,10 @@ export const PostContainer = styled.div<PostContainerProps>`
     position: relative;
     z-index: 1;
 
+    @media screen and (min-width: 769px) {
+      min-height: 20rem;
+    }
+
     header {
       margin-bottom: auto;
     }

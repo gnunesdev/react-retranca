@@ -40,10 +40,12 @@ export default function Posts({ posts }: PostsProps) {
   return (
     <PaginationProvider qtyItemsToShow={6} items={posts}>
       <PostsProvider postsFetched={posts}>
-        <Container ref={containerRef}>
-          <FilterSettings></FilterSettings>
-          <ListPosts></ListPosts>
-          <PaginationSettings></PaginationSettings>
+        <Container>
+          <div ref={containerRef}>
+            <FilterSettings></FilterSettings>
+            <ListPosts></ListPosts>
+            <PaginationSettings></PaginationSettings>
+          </div>
         </Container>
       </PostsProvider>
     </PaginationProvider>

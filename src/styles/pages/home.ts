@@ -9,15 +9,14 @@ export const HomeContainer = styled.section`
       position: relative;
       width: 100%;
       height: calc(100vh - 10.4rem);
-      overflow: hidden;
 
-      @media screen and (max-width: 768px) {
-        height: 100vh;
-      }
+      @media screen and (min-width: 769px) {
+        overflow: hidden;
 
-      &:hover {
-        &:before {
-          transform: scale(1.02);
+        &:hover {
+          &:before {
+            transform: scale(1.02);
+          }
         }
       }
 

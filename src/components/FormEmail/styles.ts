@@ -5,16 +5,28 @@ export const FormEmailContainer = styled.section`
   max-width: 680px;
   margin: 0 auto;
 
+  @media screen and (max-width: 768px) {
+    padding: 0 3rem;
+  }
+
   h2 {
     font-size: 4.2rem;
     font-weight: bold;
     color: ${(props) => props.theme.colors.coloredText};
     position: relative;
     text-align: center;
+
+    @media screen and (max-width: 768px) {
+      text-align: left;
+    }
   }
 
   form {
     margin-top: 4rem;
+
+    @media screen and (max-width: 768px) {
+      margin-top: 3rem;
+    }
   }
 
   button {
@@ -47,11 +59,20 @@ export const FormEmailContainer = styled.section`
       grid-template-columns: auto auto;
       grid-column-gap: 1rem;
       width: 100%;
+
+      @media screen and (max-width: 768px) {
+        display: flex;
+        flex-direction: column;
+      }
     }
 
     &__input-container {
       display: flex;
       flex-direction: column;
+
+      @media screen and (max-width: 768px) {
+        margin-top: 0.8rem;
+      }
 
       label {
         font-size: 1.6rem;
