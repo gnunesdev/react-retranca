@@ -1,6 +1,6 @@
 import { HomeContainer } from "./../styles/pages/home";
 
-import { getPostsFilterdByTag, getPostsTest } from "../lib/posts";
+import { getPostsFilterdByTag, getPostsTest } from "../services/ghost";
 
 import { FormEmail } from "../components/FormEmail";
 import { MainPosts } from "../components/MainPosts";

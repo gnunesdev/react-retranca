@@ -1,5 +1,5 @@
 import { PaginationProvider } from "../../context/usePaginationContext";
-import { getPosts } from "../../lib/posts";
+import { getPosts } from "../../services/ghost";
 import { Container } from "./../../styles/pages/posts";
 import ListPosts from "./../../components/ListPosts";
 import { PaginationSettings } from "./../../components/PaginationSettings";

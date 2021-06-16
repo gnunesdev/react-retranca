@@ -1,5 +1,5 @@
 import { useContext, useEffect, useRef } from "react";
-import { getSinglePost, getPosts } from "../../lib/posts";
+import { getSinglePost, getPosts } from "../../services/ghost";
 import { PostContainer } from "./../../styles/pages/post";
 
 import { gsap } from "gsap";
@@ -88,7 +88,7 @@ export default function Post({ post }: PostPageProps) {
         <DiscussionEmbed
           shortname="retranca-1"
           config={{
-            url: `http://localhost:3000/post/${post.slug}`,
+            url: `${process.env.CURRENT_URL}/post/${post.slug}`,
             identifier: post.id,
             title: post.title,
             language: "pt_BR",
