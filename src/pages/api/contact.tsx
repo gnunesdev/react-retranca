@@ -1,36 +1,29 @@
-import { NextApiRequest } from "next";
+import { NextApiRequest, NextApiResponse } from "next";
 
-export default function (req: NextApiRequest) {
+export default function (req: NextApiRequest, res: NextApiResponse) {
   let nodemailer = require("nodemailer");
 
   const transporter = nodemailer.createTransport({
-    port: 465,
-    host: "smtp.gmail.com",
+    service: "gmail",
     auth: {
       user: process.env.EMAIL_USER,
       pass: process.env.EMAIL_PASSWORD,
     },
-    secure: true,
   });
 
   const mailData = {
     from: process.env.EMAIL_USER,
     to: "gnunesinf@gmail.com",
-    subject: `Message From ${req.body.data.name}`,
+    subject: `Email de ${req.body.data.name}`,
     text: req.body.data.message,
-    html: <div>{req.body.data.message}</div>,
   };
 
-  return new Promise((resolve, reject) => {
-    transporter
-      .sendMail(mailData)
-      .then((response: Response) => {
-        transporter.close();
-        return resolve(response);
-      })
-      .catch((error: Error) => {
-        transporter.close();
-        return reject(error);
-      });
+  transporter.sendMail(mailData, (error: any) => {
+    if (!error) {
+      return res.status(200).json({ message: "email sent" });
+    } else {
+      console.error(error);
+      return res.status(400).json({ error });
+    }
   });
 }

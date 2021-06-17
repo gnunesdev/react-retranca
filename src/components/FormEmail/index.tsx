@@ -1,11 +1,26 @@
 import React, { useEffect, useRef, useState } from "react";
 import { FormEmailContainer } from "./styles";
 
+import * as yup from "yup";
+
 import { api } from "./../../services/api";
 
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
+
+const emailSchema = yup.object().shape({
+  name: yup
+    .string()
+    .min(2, "Nome muito curto")
+    .max(50, "Nome muito longo")
+    .required("Digite um nome"),
+  email: yup
+    .string()
+    .email("Digite um e-mail válido")
+    .required("Digite um e-mail"),
+  message: yup.string().required("Digite uma mensagem"),
+});
 
 export function FormEmail() {
   const formEmailTitleRef = useRef(null);
@@ -50,6 +65,11 @@ export function FormEmail() {
     event.preventDefault();
 
     const data = { name, email, message };
+
+    emailSchema
+      .validate(data, { abortEarly: false })
+      .then(() => {})
+      .catch((error: any) => {});
 
     try {
       const response = await api.post("/contact", { data });

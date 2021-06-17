@@ -1,3 +1,4 @@
+import { isMobile } from "react-device-detect";
 import { EllipsisText } from "../EllipsisText";
 import { RecentPostsContainer } from "./styles";
 
@@ -25,7 +26,11 @@ export function RecentPosts({ posts }: RecentPostsProps) {
               <div>
                 <h3>{post.title}</h3>
                 <p>
-                  <EllipsisText text={post.excerpt} maxLength={30} />
+                  {isMobile ? (
+                    <EllipsisText text={post.excerpt} maxLength={30} />
+                  ) : (
+                    post.excerpt
+                  )}
                 </p>
                 <time>
                   {new Intl.DateTimeFormat("pt-BR", {

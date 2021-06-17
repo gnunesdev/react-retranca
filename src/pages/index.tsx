@@ -132,7 +132,7 @@ export const getStaticProps = async () => {
 
     return {
       props: { mainPosts, recentPosts },
-      revalidate: 60 * 10,
+      revalidate: 60,
     };
   } catch (error) {
     console.error(error);
